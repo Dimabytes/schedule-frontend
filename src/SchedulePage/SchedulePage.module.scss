@@ -1,0 +1,74 @@
+@import 'src/styles/variables';
+
+.header{
+  text-align: center;
+  font-size: 4em;
+  font-family: 'Hack', sans-serif;
+}
+
+.root{
+  padding: 2em 3em;
+}
+
+.redCell {
+  background: #ff0000;
+}
+
+.greenCell {
+  background: #00ff0c;
+}
+
+.lessonCell {
+  height: 100%;
+  width: 100%;
+}
+
+.cell {
+  width: 3em;
+  height: 3em;
+}
+
+.filterSelect {
+  width: 20em;
+}
+
+.formWrapper{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  > * {
+    margin-left: 2em;
+  }
+}
+
+.fieldWrapper {
+  > p {
+    margin-bottom: 0.5em;
+  }
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.submitButton {
+  background-color: $secondaryColor; /* Green */
+  font-size: 1.25em;
+  padding: 1em 0.5em;
+  height: 2em;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border: none;
+  color: white;
+  text-align: center;
+  align-self: flex-end;
+  cursor: pointer;
+  transition: 0.25s;
+  outline: none;
+}
+
+.submitButton:hover {
+  background-color: $secondaryDarkColor;
+}

@@ -1,0 +1,11 @@
+@import 'src/styles/variables.scss';
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: $primaryColor;
+  color: $secondaryColor;
+}
+
+p {
+  margin: 0;
+}

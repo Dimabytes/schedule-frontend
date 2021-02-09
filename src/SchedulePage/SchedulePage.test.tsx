@@ -4,6 +4,6 @@ import { SchedulePage } from './SchedulePage';
 
 test('renders learn react link', () => {
   const screen = render(<SchedulePage />);
-  const p = screen.getByText(/Расписание/i);
+  const p = screen.getByText(/Anthill/i);
   expect(p).toBeInTheDocument();
 });
