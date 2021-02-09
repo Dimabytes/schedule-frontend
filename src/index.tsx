@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { SchedulePage } from './SchedulePage';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <SchedulePage />
   </React.StrictMode>,
   document.getElementById('root')
 );
