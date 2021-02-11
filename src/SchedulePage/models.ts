@@ -34,3 +34,14 @@ export interface ClassroomSchedule {
   isLesson5: boolean;
   isLesson6: boolean;
 }
+
+export type Option<T = string> = {
+  label: string;
+  value: T;
+};
+
+export interface FilterFormValues {
+  isEven: boolean;
+  excludedLessons: Option<LessonType>[];
+  weekday: Option<Weekday>;
+}

@@ -1,62 +1,36 @@
 import { Formik, Field, Form } from 'formik';
 import React, { FC, useCallback } from 'react';
 import Select from 'react-select';
-import { LessonType, Weekday } from './models';
+import { FilterFormValues, ScheduleFilter } from './models';
+import {
+  weekdayOptions,
+  excludedLessonOptions,
+  noOptionsMessage,
+  selectPlaceholder,
+} from './consts';
 
 import styles from './SchedulePage.module.scss';
+import { convertFormValuesToFilter } from './utils';
 
-const weekdayOptions = [
-  {
-    value: Weekday.Monday,
-    label: 'Понедельник',
-  },
-  {
-    value: Weekday.Thursday,
-    label: 'Вторник',
-  },
-];
+export interface FilterProps {
+  onChangeFilter: (newValue: ScheduleFilter) => void;
+  initialValues: FilterFormValues;
+}
 
-const excludedLessonOptions = [
-  {
-    value: LessonType.Lesson1,
-    label: '1 пара',
-  },
-  {
-    value: LessonType.Lesson2,
-    label: '2 пара',
-  },
-];
-
-export const Filter: FC = () => {
-  const onSubmit = useCallback((values, { setSubmitting }) => {
-    setTimeout(() => {
-      setSubmitting(false);
-    }, 400);
+export const Filter: FC<FilterProps> = ({ onChangeFilter, initialValues }) => {
+  const onSubmit = useCallback((values: FilterFormValues, { setSubmitting }) => {
+    setSubmitting(false);
+    onChangeFilter(convertFormValuesToFilter(values));
   }, []);
   return (
-    <Formik
-      initialValues={{
-        isEven: false,
-        weekday: weekdayOptions[0],
-        excludedLessons: [excludedLessonOptions[0]],
-      }}
-      onSubmit={onSubmit}
-    >
-      {({
-        values,
-        isSubmitting,
-        setFieldValue,
-        /* and other goodies */
-      }) => (
+    <Formik initialValues={initialValues} onSubmit={onSubmit}>
+      {({ values, isSubmitting, setFieldValue }) => (
         <Form className={styles.formWrapper}>
-          <div className={styles.fieldWrapper}>
-            <p>Четная неделя</p>
-            <Field type="checkbox" name="isEven" />
-          </div>
-
           <div className={styles.fieldWrapper}>
             <p>День недели</p>
             <Select
+              noOptionsMessage={noOptionsMessage}
+              placeholder={selectPlaceholder}
               className={styles.filterSelect}
               onChange={(value) => setFieldValue('weekday', value)}
               value={values.weekday}
@@ -67,12 +41,21 @@ export const Filter: FC = () => {
           <div className={styles.fieldWrapper}>
             <p>Исключенные пары</p>
             <Select
+              styles={{}}
+              placeholder={selectPlaceholder}
               className={styles.filterSelect}
               onChange={(value) => setFieldValue('excludedLessons', value)}
               value={values.excludedLessons}
               options={excludedLessonOptions}
               isMulti
             />
+          </div>
+
+          <div className={styles.fieldWrapper}>
+            <p>Четная неделя</p>
+            <div className={styles.checkboxWrapper}>
+              <Field type="checkbox" name="isEven" />
+            </div>
           </div>
 
           <button className={styles.submitButton} type="submit" disabled={isSubmitting}>

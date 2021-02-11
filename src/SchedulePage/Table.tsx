@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import { Column, useTable } from 'react-table';
+import { CellProps, Column, Renderer, useTable } from 'react-table';
 import cn from 'classnames';
 import { ClassroomSchedule } from './models';
 
 import styles from './SchedulePage.module.scss';
 
-const LessonCell = (isLesson: boolean) => {
-  const className = isLesson ? styles.redCell : styles.greenCell;
+const LessonCell = ({ value }: CellProps<ClassroomSchedule, boolean>) => {
+  const className = value ? styles.redCell : styles.greenCell;
   return <div className={cn(className, styles.lessonCell)} />;
 };
 
@@ -58,6 +58,16 @@ const data: ClassroomSchedule[] = [
     isLesson5: true,
     isLesson6: true,
   },
+  {
+    roomId: '334',
+    room: '444',
+    isLesson1: false,
+    isLesson2: true,
+    isLesson3: true,
+    isLesson4: false,
+    isLesson5: false,
+    isLesson6: true,
+  },
 ];
 
 export const Table: FC = () => {
@@ -67,12 +77,23 @@ export const Table: FC = () => {
   });
 
   return (
-    <table {...getTableProps()}>
+    <table className={styles.table} {...getTableProps()}>
+      <colgroup>
+        <col style={{ width: '6em' }} />
+        <col style={{ width: 'auto' }} />
+        <col style={{ width: 'auto' }} />
+        <col style={{ width: 'auto' }} />
+        <col style={{ width: 'auto' }} />
+        <col style={{ width: 'auto' }} />
+        <col style={{ width: 'auto' }} />
+      </colgroup>
       <thead>
         {headerGroups.map((group) => (
           <tr {...group.getHeaderGroupProps()}>
             {group.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+              <th className={styles.headerCell} {...column.getHeaderProps()}>
+                {column.render('Header')}
+              </th>
             ))}
           </tr>
         ))}

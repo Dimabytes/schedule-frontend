@@ -9,3 +9,15 @@ body {
 p {
   margin: 0;
 }
+
+@media screen and (max-width: 1250px) {
+  body{
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  body{
+    font-size: 12px;
+  }
+}
