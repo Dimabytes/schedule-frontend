@@ -1,6 +1,6 @@
 import { ClassroomSchedule, ScheduleFilter } from './models';
 
-export const backendUrl = 'http://localhost:3001';
+export const backendUrl = 'https://dimabytes-schedule-backend.herokuapp.com';
 
 export const routers = {
   getSchedule: (): string => '/schedule',
