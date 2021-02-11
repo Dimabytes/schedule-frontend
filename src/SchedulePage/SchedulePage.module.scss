@@ -4,10 +4,12 @@
   text-align: center;
   font-size: 3em;
   font-family: 'Hack', sans-serif;
+  margin: 0.5em 0;
 }
 
 .root{
   padding: 10px 20px;
+  height: calc(100vh - 20px);
 }
 
 .redCell {
@@ -31,6 +33,9 @@
 
 .headerCell {
   padding-bottom: 1em;
+  position: sticky;
+  top: 0;
+  background: $primaryColor;
 }
 
 .filterSelect {
@@ -40,7 +45,7 @@
 $formWrapperWidth: 18em;
 
 .formWrapper{
-  height: 100%;
+  height: fit-content;
   background: $primaryLightColor;
   padding: 1em;
   border-radius: 4px;
@@ -49,19 +54,34 @@ $formWrapperWidth: 18em;
   display: flex;
   flex-direction: column;
   align-items: center;
-  > * {
+  > *{
     margin-bottom: 1em;
+  }
+  > *:last-child{
+    margin-bottom: 0;
+  }
+}
+
+.loaderWrapper{
+  width: calc(100% - #{$formWrapperWidth});
+  display: flex;
+  justify-content: center;
+}
+
+.tableWrapper{
+  max-height: 100%;
+  width: calc(100% - #{$formWrapperWidth});
+  overflow: auto;
+  table{
+    width: 100%;
+    table-layout: fixed;
   }
 }
 
 
-.table{
-  width: calc(100% - #{$formWrapperWidth});
-  table-layout: fixed;
-}
-
 .contentWrapper {
   display: flex;
+  height: calc(100% - 10em);
 }
 
 
@@ -91,7 +111,7 @@ $formWrapperWidth: 18em;
   color: white;
   text-align: center;
   cursor: pointer;
-  transition: 0.25s;
+  transition: color 0.25s;
   outline: none;
   width: 14em;
 }
@@ -113,8 +133,10 @@ $formWrapperWidth: 18em;
     flex-direction: column;
     align-items: center;
   }
-  .table {
+  .formWrapper{
+    margin-bottom: 3em;
+  }
+  .tableWrapper, .loaderWrapper {
     width: 100%;
-    margin-top: 3em;
   }
 }
