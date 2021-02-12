@@ -39,7 +39,7 @@ export const Filter: FC<FilterProps> = ({ onChangeFilter, initialValues }) => {
           </div>
 
           <div className={styles.fieldWrapper}>
-            <p>Исключенные пары</p>
+            <p>Свободная пара</p>
             <Select
               styles={{}}
               placeholder={selectPlaceholder}
