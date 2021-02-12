@@ -41,7 +41,6 @@ export const Filter: FC<FilterProps> = ({ onChangeFilter, initialValues }) => {
           <div className={styles.fieldWrapper}>
             <p>Свободная пара</p>
             <Select
-              styles={{}}
               placeholder={selectPlaceholder}
               className={styles.filterSelect}
               onChange={(value) => setFieldValue('excludedLessons', value)}
