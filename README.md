@@ -4,6 +4,8 @@
 # Schedule frontend
 ## Description
 
+## [Demo](schedule-frontend.dimabytes.vercel.app)
+
 Search an empty classrooms in the university by a filter.
 
 ## Stack
